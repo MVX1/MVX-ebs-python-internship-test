@@ -32,5 +32,9 @@ class BlogItemView(GenericAPIView):
 
     def get(self, request, pk):
         blog = get_object_or_404(Blog.objects.filter(pk=pk))
-
         return Response(BlogSerializer(blog).data)
+
+
+class BlogViewSet(viewsets.ModelViewSet):
+    serializer_class = BlogSerializer
+    queryset = Blog.objects.all()
